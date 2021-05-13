@@ -57,16 +57,17 @@ function addAnswer() {
   let answer = prompt(
     "Введите номера правильных ответов через запятую. Нумерация начинается с 1"
   );
-  let isValid = isValidValue(answer);
-  let arrayOfNumbers = answer.split(",").map((i) => Number(i));
-  let isRepeat = isRepeatedNumber(arrayOfNumbers);
-
   if (!answer) {
     toggleNotification("CC3");
-  } else if (!isValid || isRepeat) {
-    toggleNotification("CC6");
   } else {
-    return arrayOfNumbers;
+    let isValid = isValidValue(answer);
+    let arrayOfNumbers = answer.split(",").map((i) => Number(i));
+    let isRepeat = isRepeatedNumber(arrayOfNumbers);
+    if (!isValid || isRepeat) {
+      toggleNotification("CC6");
+    } else {
+      return arrayOfNumbers;
+    }
   }
 }
 
